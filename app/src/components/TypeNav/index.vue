@@ -3,33 +3,36 @@
   <div class="type-nav">
     <div class="container">
       <!-- 事件的委派 -->
-      <div @mouseleave="leaveIndex">
+      <div @mouseleave="leaveshow" @mouseenter="entershow">
         <h2 class="all">全部商品分类</h2>
         <!-- 三级联动 -->
-        <div class="sort" v-show="show">
-          <div class="all-sort-list2" @click="goSearch">
-            <div class="item" v-for="(c1, index) in categoryList" :key="c1.categoryId" :class="{ cur: currentIndex == index }">
-              <h3 @mouseenter="changeIndex(index)">
-                <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName }}</a>
-              </h3>
-              <!-- 二级，三级分类 -->
-              <div class="item-list clearfix" :style="{ display: currentIndex == index ? 'block' : 'none' }">
-                <div class="subitem" v-for="(c2, index) in c1.categoryChild" :key="c2.categoryId">
-                  <dl class="fore">
-                    <dt>
-                      <a :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{ c2.categoryName }}</a>
-                    </dt>
-                    <dd>
-                      <em v-for="(c3, index) in c2.categoryChild" :key="c3.categoryId">
-                        <a :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{ c3.categoryName }}</a>
-                      </em>
-                    </dd>
-                  </dl>
+        <!-- 过度动画 -->
+        <transition name="sort">
+          <div class="sort" v-show="show">
+            <div class="all-sort-list2" @click="goSearch">
+              <div class="item" v-for="(c1, index) in categoryList" :key="c1.categoryId" :class="{ cur: currentIndex == index }">
+                <h3 @mouseenter="changeIndex(index)">
+                  <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName }}</a>
+                </h3>
+                <!-- 二级，三级分类 -->
+                <div class="item-list clearfix" :style="{ display: currentIndex == index ? 'block' : 'none' }">
+                  <div class="subitem" v-for="(c2, index) in c1.categoryChild" :key="c2.categoryId">
+                    <dl class="fore">
+                      <dt>
+                        <a :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{ c2.categoryName }}</a>
+                      </dt>
+                      <dd>
+                        <em v-for="(c3, index) in c2.categoryChild" :key="c3.categoryId">
+                          <a :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{ c3.categoryName }}</a>
+                        </em>
+                      </dd>
+                    </dl>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </transition>
       </div>
       <nav class="nav">
         <a href="###">服装城</a>
@@ -61,7 +64,6 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('categoryList')
     // 当组件挂载完毕，让show属性变为false
     // 如果不是home组件，则将typeNav 隐藏
     if (this.$route.path !== '/home') {
@@ -119,6 +121,18 @@ export default {
 
 
       // this.$router.push('/search')
+    },
+    // 当鼠标移入的时候，让商品分类列表进行展示
+    entershow (event) {
+      this.show = true
+    },
+    leaveshow () {
+      this.leaveIndex = -1;
+      if (this.$route.path != '/home') {
+
+        this.show = false
+      }
+
     }
   }
 }
@@ -247,6 +261,19 @@ export default {
         //   background: skyblue;
         // }   点击一级分类更改背景颜色
       }
+    }
+
+    // 过度动画进入的状态
+    .sort-enter {
+      height: 0px;
+    }
+    // 过渡动画结束状态
+    .enter-to-sort {
+      height: 461px;
+    }
+    // 定义动画时间，速率
+    .sort-enter-active {
+      transition: all 0.2s linear;
     }
   }
 }
