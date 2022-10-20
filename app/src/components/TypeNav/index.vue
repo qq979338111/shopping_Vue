@@ -112,11 +112,17 @@ export default {
           query.category2id = category2id;
         } else if (category3id) {
           query.category3id = category3id;
-        }
-        // console.log(location, query);
-        location.query = query;
-        this.$router.push(location)
 
+        }
+        // console.log('我是location', location, query);
+        // 判断，如果路由跳转的时候，带有params参数，捎带传递过去
+        if (this.$route.params) {
+          location.params = this.$route.params
+
+          location.query = query;
+          this.$router.push(location)
+
+        }
       }
 
 

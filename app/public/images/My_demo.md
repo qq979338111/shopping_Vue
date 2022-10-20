@@ -15,7 +15,5 @@
    1:npm install mockjs,
    2：在src 目录下创建 mock文件夹   mock文件下 创建 xxx.json文件-放入json数据,记得将数据格式化，别留空格
    3：把mock的数据需要的图片房子public 文件夹中，public打包会把资源 打包到dist文件夹中
-   4: 创建 mockServe.js   虚拟数据
-   5:把 mockServe.js 文件在入口文件中 引入
-
+   
   

@@ -70,21 +70,24 @@ export default {
       // this.$router.push({ name: 'search', query: { k: this.keyword.toUpperCase() } })
       // 3。params参数可以传递也可以不传递，但是如果是空串，如何解决？--使用undefined 解决
       //  params参数可以传递，不传递（空字符串）
-      // this.$router.push({ name: 'search', params: { keyword: '' || undefined }, query: { k: this.keyword.toUpperCase() } })
 
 
       //4.路由组件能不能传递props数据？--可以
 
       //三种写法
-      this.$router.push({ name: "search", params: { keyword: this.keyword }, query: { k: this.keyword.toUpperCase() } }, () => { }, () => { })
+      // this.$router.push({
+      //   name: "search",
+      //   params: { keyword: this.keyword }, query: { k: this.keyword.toUpperCase() }
+      // }, () => { }, () => { })
 
-      console.log(this.$router);//
-
-
-
-
-
-
+      if (this.$route.query) {
+        let loction = {
+          name: 'search',
+          params: { keyword: this.keyword || undefined }
+        }
+        loction.query = this.$route.query;
+        this.$router.push(loction)
+      }
     }
   }
 }

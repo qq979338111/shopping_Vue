@@ -12,8 +12,12 @@ import store from './store'
 import TpyeNav from '@/components/TypeNav';
 //             第一个参数 全局组件的名字：第二个参数：哪一个组件
 Vue.component(TpyeNav.name, TpyeNav);
+// 引入MockServe.js ---mock数据
+import '@/mock/MockServe'
 
 
+// 引入swiper 样式
+import 'swiper/css/swiper.min.css'
 
 
 Vue.config.productionTip = false
