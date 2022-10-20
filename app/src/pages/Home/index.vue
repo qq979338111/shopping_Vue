@@ -8,6 +8,7 @@
     <Floor></Floor>
     <Floor></Floor>
     <Brand></Brand>
+    <Test></Test>
   </div>
 </template>
 
@@ -19,6 +20,9 @@ import Rank from '@/pages/Home/Rank'
 import Like from '@/pages/Home/Like'
 import Floor from '@/pages/Home/Floor'
 import Brand from '@/pages/Home/Brand'
+import Test from '@/pages/Home/test'
+
+
 import { mapState } from 'vuex'
 
 
@@ -30,8 +34,8 @@ export default {
     Rank,
     Like,
     Floor,
-    Brand
-
+    Brand,
+    // Test
   },
 
 }

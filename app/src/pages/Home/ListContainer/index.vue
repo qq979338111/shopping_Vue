@@ -4,20 +4,14 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(carousel, index) in bannerList" :key="carousel.id">
-              <!-- <img :src="carousel.imgUrl" /> -->
-              <img :src="carousel.imgUrl" />
-              <!-- <h1>{{ carousel.id }}</h1> -->
-            </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
-
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+        <div class="block">
+          <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
+          <el-carousel height="465px">
+            <el-carousel-item v-for="(carousel, index) in bannerList" :key="carousel.id">
+              <img :src="carousel.id" />
+              <h1>{{ carousel.id }}</h1>
+            </el-carousel-item>
+          </el-carousel>
         </div>
       </div>
       <div class="right">
@@ -101,30 +95,8 @@ export default {
   name: 'ListContainer',
   mounted () {
     //  派发action，通过vuex 发起ajax请求，将数据仓库放在仓库中
-    this.$store.dispatch('getBannerList'),
-      setTimeout(() => {
-        var mySwiper = new Swiper('.swiper-container', {
-          // direction: 'vertical', // 垂直切换选项
-          loop: true, // 循环模式选项
+    this.$store.dispatch('getBannerList')
 
-          // 如果需要分页器
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          },
-
-          // 如果需要前进后退按钮
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-
-          // 如果需要滚动条
-          scrollbar: {
-            el: '.swiper-scrollbar',
-          },
-        })
-      }, 2000)
   },
   computed: {
     ...mapState({
@@ -309,6 +281,21 @@ export default {
         }
       }
     }
+  }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 150px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n + 1) {
+    background-color: #d3dce6;
   }
 }
 </style>

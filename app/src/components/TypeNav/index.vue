@@ -133,7 +133,7 @@ export default {
       this.show = true
     },
     leaveshow () {
-      this.leaveIndex = -1;
+      this.currentIndex = -1;
       if (this.$route.path != '/home') {
 
         this.show = false
