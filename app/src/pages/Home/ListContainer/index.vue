@@ -8,8 +8,10 @@
           <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
           <el-carousel height="465px">
             <el-carousel-item v-for="(carousel, index) in bannerList" :key="carousel.id">
-              <img :src="carousel.id" />
-              <h1>{{ carousel.id }}</h1>
+              <img :src="carousel.imgUrl" />
+
+              <!-- <h1>{{ carousel.imgUrl }}</h1> -->
+              <!-- <h1>{{ carousel.id }}</h1> -->
             </el-carousel-item>
           </el-carousel>
         </div>
@@ -93,19 +95,41 @@ import Swiper from 'swiper' //全局组件已经引了
 import 'swiper/css/swiper.min.css'
 export default {
   name: 'ListContainer',
+  data () {
+    return {
+
+    }
+  },
   mounted () {
     //  派发action，通过vuex 发起ajax请求，将数据仓库放在仓库中
     this.$store.dispatch('getBannerList')
 
-  },
+  }
+  ,
+
   computed: {
     ...mapState({
       bannerList: state => state.home.bannerList
     }),
 
   },
-  updated () {
+  watch: {
+    // 监听bannerList数据的变化，因为此数据发生过变化- 由空数组变为四个数据
+    bannerList: {
+      // 如果执行hander方法，说明组件实例身上这个属性以已经有了-数据改变
+      handler (newValue, oldValue) {
 
+        // 在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。 v-for已经遍历完了--结构已经有了
+
+        this.$nextTick(() => {
+          // 
+        })
+
+
+
+
+      }
+    }
   }
 }
 </script>

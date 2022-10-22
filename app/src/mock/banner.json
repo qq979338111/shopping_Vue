@@ -1,17 +1,20 @@
-[{
+[
+
+
+  {
     "id": "1",
-    "imgUrl": "/images/banner1.jpg"
+    "imgUrl": "https://img0.baidu.com/it/u=4118069209,1702164536&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500"
   },
   {
     "id": "2",
-    "imgUrl": "/images/banner2.jpg"
+    "imgUrl": "https://img0.baidu.com/it/u=4118069209,1702164536&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500"
   },
   {
     "id": "3",
-    "imgUrl": "/images/banner3.jpg"
+    "imgUrl": "https://img0.baidu.com/it/u=4118069209,1702164536&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500"
   },
   {
     "id": "4",
-    "imgUrl": "/images/banner4.jpg"
+    "imgUrl": "https://img0.baidu.com/it/u=4118069209,1702164536&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500"
   }
 ]

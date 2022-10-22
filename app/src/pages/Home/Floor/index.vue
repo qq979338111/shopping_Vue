@@ -89,7 +89,7 @@
 
 <script>
 export default {
-
+  props: ['list']
 }
 </script>
 
